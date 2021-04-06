@@ -2,7 +2,8 @@
 # You can add additional rules here, just Google search em...
 
 Options +FollowSymLinks
-Options All -Indexes 
+Options All -Indexes
+Options -Indexes
 
 # Rewrite Rules
 # To enable clean URLs, remove the # from the lines below
