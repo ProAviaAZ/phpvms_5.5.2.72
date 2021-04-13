@@ -265,10 +265,11 @@ Config::Set('EMAIL_SEND_PIREP', true);
 Config::Set('EMAIL_RETURN_PATH', '');
 
 /*	Check the phpVMS forums for status of phpVMS API server and VACentral.
-	As of this release, both are down. Check the forums for additional info */
-Config::Set('PHPVMS_API_SERVER', 'http://api.vacentral.net');
-Config::Set('PHPVMS_NEWS_FEED', 'http://feeds.feedburner.com/phpvms');
-Config::Set('VACENTRAL_NEWS_FEED', 'http://feeds.feedburner.com/vacentral');
+	This release uses the new airport lookup API. Check the forums for additional info */
+Config::Set('AIRPORT_LOOKUP_SERVER', 'phpvms'); // latest server for airport lookup as of 05/07/2020
+Config::Set('PHPVMS_API_SERVER', 'https://api.vacentral.net'); // latest VACentral server for airport lookup as of 05/07/2020
+Config::Set('PHPVMS_NEWS_FEED', 'https://feeds.feedburner.com/phpvms');
+Config::Set('VACENTRAL_NEWS_FEED', 'https://feeds.feedburner.com/vacentral');
 
 /*	Whether you have the /admin/maintenance.php script added into cron.
 	If you do, set this to true. This saves many DB calls since phpVMS will
