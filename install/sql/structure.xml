@@ -81,8 +81,13 @@
 	<table_structure name="phpvms_airports">
 		<field Field="id" Type="int(11)" Null="NO" Key="PRI" Extra="auto_increment" Comment="" />
 		<field Field="icao" Type="varchar(5)" Null="NO" Key="UNI" Default="" Extra="" Comment="" />
+		<field Field="iata" Type="varchar(10)" Null="NO: Key="" Default="" Extra="" Comment="" />
 		<field Field="name" Type="text" Null="NO" Key="" Extra="" Comment="" />
+		<field Field="city" Type="varchar(255)" Null="NO: Key="" Default="" Extra="" Comment="" />
 		<field Field="country" Type="varchar(50)" Null="NO" Key="" Default="" Extra="" Comment="" />
+		<field Field="region" Type="varchar(50)" Null="NO: Key="" Default="" Extra="" Comment="" />
+		<field Field="tz" Type="varchar(50)" Null="NO: Key="" Default="" Extra="" Comment="" />
+		<field Field="elevation" Type="varchar(11)" Null="NO: Key="" Default="" Extra="" Comment="" />
 		<field Field="lat" Type="float" Null="NO" Key="" Default="0" Extra="" Comment="" />
 		<field Field="lng" Type="float" Null="NO" Key="" Default="0" Extra="" Comment="" />
 		<field Field="hub" Type="smallint(6)" Null="NO" Key="" Default="0" Extra="" Comment="" />
