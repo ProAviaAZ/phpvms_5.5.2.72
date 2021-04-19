@@ -171,6 +171,30 @@ class Operations extends CodonModule {
     }
 
     /**
+     * Operations::getfuelprice()
+     * 
+     * @return
+     */
+    public function getfuelprice() {
+        
+        if (Config::Get('FUEL_GET_LIVE_PRICE') == false) {
+            echo '<span style="color: red">Live fuel pricing is disabled!</span>';
+            return;
+        }
+
+        $icao = $_GET['icao'];
+        $price = FuelData::get_from_server($icao);
+
+        if (is_bool($price) && $price === false) {
+            echo '<span style="color: red">Live fuel pricing is not available for this airport</span>';
+            return;
+        }
+
+        echo '<span style="color: #33CC00">OK! Found - current price: <strong>' . $price .
+            '</strong></span>';
+    }
+
+    /**
      * Operations::findairport()
      * 
      * @return
@@ -357,7 +381,7 @@ class Operations extends CodonModule {
             }
 
             if ($row->hub == 1) {
-                $name = "<b>{$row->name}</b>";
+                $name = "<b><i><font color=red>{$row->name}</font></i></b>";
             } else {
                 $name = $row->name;
             }
@@ -365,7 +389,7 @@ class Operations extends CodonModule {
             $edit = '<a href="#" onclick="editairport(\'' . $row->icao . '\'); return false;">Edit</a>';
 
             $tmp = array('id' => $row->id, 'cell' => array( # Each column, in order
-                $row->icao, $name, $row->country, $row->fuelprice, $row->lat, $row->lng, $edit, ), );
+                $row->icao, $row->iata, $row->name, $row->city, $row->country, $row->region, $row->tz, $row->elevation, $row->fuelprice, $row->lat, $row->lng, $edit, ), );
 
             $json['rows'][] = $tmp;
         }
@@ -842,9 +866,10 @@ class Operations extends CodonModule {
      */
     protected function add_airport_post() {
 
+        // this if statement dictates the required items
         if ($this->post->icao == '' || $this->post->name == '' || $this->post->country ==
-            '' || $this->post->lat == '' || $this->post->lng == '') {
-            $this->set('message', 'Some fields were blank!');
+            '' || $this->post->lat == '' || $this->post->lon == '') {
+            $this->set('message', 'Some required fields were blank!');
             $this->render('core_error.php');
             return;
         }
@@ -852,10 +877,21 @@ class Operations extends CodonModule {
         if ($this->post->hub == 'true') $this->post->hub = true;
         else  $this->post->hub = false;
 
-        $data = array('icao' => $this->post->icao, 'name' => $this->post->name,
-            'country' => $this->post->country, 'lat' => $this->post->lat, 'lng' => $this->post->lng,
-            'hub' => $this->post->hub, 'chartlink' => $this->post->chartlink, 'fuelprice' =>
-            $this->post->fuelprice);
+        $data = array(
+			'icao' => $this->post->icao, 
+			'iata' => $this->post->iata, 
+			'name' => $this->post->name, 
+            'city' => $this->post->city, 
+			'country' => $this->post->country,
+			'region' => $this->post->region, 
+			'tz' => $this->post->tz, 
+			'elevation' => $this->post->elevation, 
+			'lat' => $this->post->lat, 
+			'lon' => $this->post->lon, 
+			'hub' => $this->post->hub, 
+			'chartlink' => $this->post->chartlink, 
+			'fuelprice' =>$this->post->fuelprice
+		);
 
         OperationsData::AddAirport($data);
 
@@ -882,9 +918,10 @@ class Operations extends CodonModule {
      * @return
      */
     protected function edit_airport_post() {
+        // this if statement dictates the required items
         if ($this->post->icao == '' || $this->post->name == '' || $this->post->country ==
-            '' || $this->post->lat == '' || $this->post->lng == '') {
-            $this->set('message', 'Some fields were blank!');
+            '' || $this->post->lat == '' || $this->post->lon == '') {
+            $this->set('message', 'Some required fields were blank!');
             $this->render('core_message.php');
             return;
         }
@@ -893,10 +930,21 @@ class Operations extends CodonModule {
         else  $this->post->hub = false;
 
 
-        $data = array('icao' => $this->post->icao, 'name' => $this->post->name,
-            'country' => $this->post->country, 'lat' => $this->post->lat, 'lng' => $this->post->lng,
-            'hub' => $this->post->hub, 'chartlink' => $this->post->chartlink, 'fuelprice' =>
-            $this->post->fuelprice);
+        $data = array(
+			'icao' => $this->post->icao, 
+			'iata' => $this->post->iata, 
+			'name' => $this->post->name, 
+            'city' => $this->post->city, 
+			'country' => $this->post->country, 
+			'region' => $this->post->region, 
+			'tz' => $this->post->tz, 
+			'elevation' => $this->post->elevation,
+			'lat' => $this->post->lat, 
+			'lon' => $this->post->lon, 
+			'hub' => $this->post->hub, 
+			'chartlink' => $this->post->chartlink, 
+			'fuelprice' =>$this->post->fuelprice
+		);
 
         OperationsData::editAirport($data);
 
