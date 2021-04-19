@@ -14,16 +14,21 @@ $("#grid").jqGrid({
    url: '<?php echo adminaction('/operations/airportgrid');?>',
    datatype: 'json',
    mtype: 'GET',
-   colNames: ['ICAO', 'Airport Name', 'Airport Country', 'Fuel Cost', 'Lat', 'Lng', 'Edit'],
+   colNames: ['ICAO', 'IATA', 'Airport Name', 'City', 'Country', 'Region', 'TimeZone', 'Elevation', 'Fuel Cost', 'Lat', 'Lng', 'Edit'], // add column name if uncomment column model
    colModel : [
-		{index: 'icao', name : 'icao', width: 40, sortable : true, align: 'center', search: 'true', searchoptions:{sopt:['eq','ne']}},
-		{index: 'name', name : 'name', width: 65, sortable : true, align: 'center', searchoptions:{sopt:['in']}},
-		{index: 'country', name : 'country', width: 65, sortable : true, align: 'center', searchoptions:{sopt:['in']}},
-		{index: 'fuelprice', name : 'fuelprice', width: 65, sortable : true, align: 'center', search:false},
-		{index: 'lat', name : 'lat', width: 65, sortable : true, align: 'center', search:false},
-		{index: 'lng', name : 'lng', width: 65, sortable : true, align: 'center', search:false},
-		{index: '', name : '', width: 100, sortable : true, align: 'center', search: false}
-	],
+	{index: 'icao', name : 'icao', width: 20, sortable : true, align: 'center', search: 'true', searchoptions:{sopt:['eq','ne']}},
+	{index: 'iata', name : 'iata', width: 20, sortable : true, align: 'center', searchoptions:{sopt:['in']}},
+	{index: 'name', name : 'name', width: 65, sortable : true, align: 'left', searchoptions:{sopt:['in']}},
+	{index: 'city', name : 'city', width: 40, sortable : true, align: 'left', searchoptions:{sopt:['in']}},
+	{index: 'country', name : 'country', width: 30, sortable : true, align: 'center', searchoptions:{sopt:['in']}},
+	{index: 'region', name : 'region', width: 20, sortable : true, align: 'center', searchoptions:{sopt:['in']}},
+	{index: 'tz', name : 'tz', width: 40, sortable : true, align: 'center', searchoptions:{sopt:['in']}},
+	{index: 'elevation', name : 'elevation', width: 20, sortable : true, align: 'right', search:false},
+	{index: 'fuelprice', name : 'fuelprice', width: 20, sortable : true, align: 'center', search:false},
+	{index: 'lat', name : 'lat', width: 20, sortable : true, align: 'center', search:false},
+	{index: 'lng', name : 'lng', width: 20, sortable : true, align: 'center', search:false},
+	{index: '', name : '', width: 40, sortable : true, align: 'center', search: false}
+   ],
     pager: '#pager', rowNum: 25,
     sortname: 'icao', sortorder: 'asc',
     viewrecords: true, autowidth: true,
@@ -51,3 +56,6 @@ function editairport(icao)
 	}).jqmShow();
 }
 </script>
+<div align="center"><b><i><font color=red>Airport Name in red = Hub airport</font></i></b><br />
+	*** Fuel Cost = Live -- is live fuel price if live fuel pricing is enabled and available - otherwise is default fuel price as set in local.config.php file. ***<br />
+	*** You may set a fuel price for a specific airport by clicking edit and entering the fuel price. ***</div>
