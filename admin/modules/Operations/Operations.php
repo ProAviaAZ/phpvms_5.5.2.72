@@ -878,20 +878,20 @@ class Operations extends CodonModule {
         else  $this->post->hub = false;
 
         $data = array(
-			'icao' => $this->post->icao, 
-			'iata' => $this->post->iata, 
-			'name' => $this->post->name, 
-            'city' => $this->post->city, 
-			'country' => $this->post->country,
-			'region' => $this->post->region, 
-			'tz' => $this->post->tz, 
-			'elevation' => $this->post->elevation, 
-			'lat' => $this->post->lat, 
-			'lon' => $this->post->lon, 
-			'hub' => $this->post->hub, 
-			'chartlink' => $this->post->chartlink, 
-			'fuelprice' =>$this->post->fuelprice
-		);
+		'icao' => $this->post->icao, 
+		'iata' => $this->post->iata, 
+		'name' => $this->post->name, 
+        	'city' => $this->post->city, 
+		'country' => $this->post->country,
+		'region' => $this->post->region, 
+		'tz' => $this->post->tz, 
+		'elevation' => $this->post->elevation, 
+		'lat' => $this->post->lat, 
+		'lon' => $this->post->lon, 
+		'hub' => $this->post->hub, 
+		'chartlink' => $this->post->chartlink, 
+		'fuelprice' =>$this->post->fuelprice
+	);
 
         OperationsData::AddAirport($data);
 
@@ -931,20 +931,20 @@ class Operations extends CodonModule {
 
 
         $data = array(
-			'icao' => $this->post->icao, 
-			'iata' => $this->post->iata, 
-			'name' => $this->post->name, 
-            'city' => $this->post->city, 
-			'country' => $this->post->country, 
-			'region' => $this->post->region, 
-			'tz' => $this->post->tz, 
-			'elevation' => $this->post->elevation,
-			'lat' => $this->post->lat, 
-			'lon' => $this->post->lon, 
-			'hub' => $this->post->hub, 
-			'chartlink' => $this->post->chartlink, 
-			'fuelprice' =>$this->post->fuelprice
-		);
+		'icao' => $this->post->icao, 
+		'iata' => $this->post->iata, 
+		'name' => $this->post->name, 
+        	'city' => $this->post->city, 
+		'country' => $this->post->country, 
+		'region' => $this->post->region, 
+		'tz' => $this->post->tz, 
+		'elevation' => $this->post->elevation,
+		'lat' => $this->post->lat, 
+		'lon' => $this->post->lon, 
+		'hub' => $this->post->hub, 
+		'chartlink' => $this->post->chartlink, 
+		'fuelprice' =>$this->post->fuelprice
+	);
 
         OperationsData::editAirport($data);
 
