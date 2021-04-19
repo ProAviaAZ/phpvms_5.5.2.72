@@ -243,36 +243,42 @@ function lookupICAO() {
 	icao = $("#airporticao").val();
 
 	if (icao.length != 4) {
-		$("#statusbox").html("Please enter the full 4 letter ICAO");
+		$("#statusbox").html("Please enter the full 4 digit ICAO");
 		return false;
 	}
 
 	$("#statusbox").html("Fetching airport data...");
 	$("#lookupicao").hide();
 
-	url = phpvms_api_server + "/airport/get/" + icao + "&callback=?";
+	// url = phpvms_api_server + "/airport/get/" + icao + "&callback=?"; // old VACentral
+	url = phpvms_api_server + "/api/airports/" + icao + "?callback?"; // new VACentral
 
 	$.getJSON(url,
 		function(data) {
 
 			if (data.totalResultsCount == 0) {
-				$("#statusbox").html("Nothing found. Try entering the full 4 letter ICAO");
+				$("#statusbox").html("Nothing found. Try entering the full 4 digit ICAO");
 				$("#lookupicao").show();
 				return;
 			}
 
-			$.each(data.airports, function(i, item) {
 				$("#airporticao").val(icao);
-				$("#airportname").val(item.name);
-				$("#airportcountry").val(item.countryName);
-				$("#airportlat").val(item.lat);
-				$("#airportlong").val(item.lng);
-				$("#fuelprice").val(item.jeta);
+                		$("#airportiata").val(data.iata);
+                		$("#airportname").val(data.name);
+                		$("#airportcity").val(data.city);
+                		$("#airportcountry").val(data.country);
+                		$("#airportregion").val(data.region);
+                		$("#airporttimezone").val(data.tz);
+                		$("#airportelevation").val(data.elevation);
+                		$("#airportlat").val(data.lat);
+                		$("#airportlong").val(data.lon);
+                		$("#fuelprice").val(data.jeta);
 
 				$("#statusbox").html("");
 				$("#lookupicao").show();
-			});
-		});
+		
+		}
+	);
 
 	return false;
 }
