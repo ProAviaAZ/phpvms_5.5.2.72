@@ -3,6 +3,8 @@ phpVMS 5.5.2.72
 
 **Updated version of phpVMS 5.5.2 (simpilot) with PHP 7.2 compatibility**
 
+**Airport Lookup functions with new VACentral API (same as that used in phpVMS v7)**
+
 Current release stable on PHP 7.2.19 environment (Apache 2.4.39, PHP 7.2.19, MySQL 5.6.44).
 
 
@@ -10,7 +12,7 @@ Current release stable on PHP 7.2.19 environment (Apache 2.4.39, PHP 7.2.19, MyS
 * Full install required. Update install is not working correctly.
 * Report any issues using the "Issues" tab above.
 * This may install under PHP 7.0 and 7.1 - but has not been fully tested. Will not work on PHP 7.3+ at present.
-* Will install using MySQL 5.6 and MySQL 5.7.
+* Will install using MySQL 5.6 and MySQL 5.7 (issues reported with MySQL above 5.7.4). Should install using MariaDB 10.1 (issues reported with Maria 10.2 and above).
 * Installation outside the parameters listed may not receive support (Apache 2.4, PHP 7.2, MySQL 5.6).
 
 **--------------------------------_CAUTION_------------------------------------------**
