@@ -1,1 +1,1 @@
-icao,name,country,lat,lng,hub,fuelprice,chartlink
+icao,iata,name,city,country,region,tz,elevation,lat,lng,hub,fuelprice,chartlink
