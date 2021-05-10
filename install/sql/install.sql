@@ -102,7 +102,7 @@ CREATE TABLE `phpvms_airports` (
   `country` varchar(50) NOT NULL DEFAULT '',
   `region` varchar(50) NOT NULL DEFAULT '',
   `tz` varchar(50) NOT NULL DEFAULT '',
-  `elevation` (11) NOT NULL DEFAULT '',
+  `elevation` int(11) NOT NULL DEFAULT '',
   `lat` float NOT NULL DEFAULT '0',
   `lng` float NOT NULL DEFAULT '0',
   `hub` smallint(6) NOT NULL DEFAULT '0',
