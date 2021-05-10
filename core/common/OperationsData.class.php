@@ -735,7 +735,6 @@ class OperationsData extends CodonData {
 	];
 
         OperationsData::addAirport($data);
-        }
 
         return self::GetAirportInfo($icao);
     }
