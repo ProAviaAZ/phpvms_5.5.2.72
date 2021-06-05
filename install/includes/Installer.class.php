@@ -393,7 +393,7 @@ class Installer
 		$params->addChild('mysqli', @mysqli_get_server_info());
 		$params->addChild('ext', $ext);
 							  
-		$url = 'http://api.phpvms.net/register';
+		$url = 'https://api.phpvms.net/register';
 							
 		error_reporting(0);
 		
