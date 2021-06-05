@@ -4,7 +4,7 @@ INSERT INTO `phpvms_news` (`subject`,`body`,`postdate`,`postedby`)
 VALUES ('Welcome to phpVMS!',  'Thanks for installing and using phpVMS!<br /> Check out the <a href="http://docs.phpvms.net/" target="_new">docs</a> for help and information on getting started on your VA.<br /><br />This is just a starter skin - customize yours completely. This is just a basic, barebones example of what a skin is and how it works. Check out the crystal folder in the lib/skins directory. Make your own copy and fiddle around. For help, check out the forum, and skinning docs. Also, be sure to check out the <a href="http://www.phpvms.net/tutorials" target="_blank">skinning tutorials</a> for a quick primer. The <a href="http://forum.phpvms.net" target="_blank">forums</a> are also filled with plenty of helpful people for any questions you may have.<br /><br />Good luck!', NOW(), 'phpVMS Installer');
 
 INSERT INTO `phpvms_airports` (`id`, `icao`, `iata`, `name`, `city`, `country`, `region`, `timezone`, `elevation` `lat`, `lng`, `hub`, `fuelprice`, `chartlink`) VALUES
-(1, 'KJFK', 'JFK', 'John F Kennedy International', 'New York', 'US', 'US-NY', 'America-New_York', 13, 40.6398, -73.7789, 1, 0, '');
+(1, 'KJFK', 'JFK', 'John F Kennedy International', 'New York', 'US', 'US-NY', 'America-New_York', '13', 40.6398, -73.7789, 1, 0, '');
 
 INSERT INTO `phpvms_ranks` VALUES(1, 'New Hire', '', 0, 18.0); 
 
