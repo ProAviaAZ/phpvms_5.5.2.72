@@ -5,6 +5,9 @@ phpVMS 5.5.2.72
 
 **Airport Lookup functions with new VACentral API (same as that used in phpVMS v7)**
 
+**Add DEFAULT value for all NOT NULL entries in SQL for MySQL compatibility with MySQL above version 5.7.4**
+**THIS IS ONLY A TEST - DO NOT USE THIS BRANCH**
+
 Current release stable on PHP 7.2.19 environment (Apache 2.4.39, PHP 7.2.19, MySQL 5.6.44).
 
 
