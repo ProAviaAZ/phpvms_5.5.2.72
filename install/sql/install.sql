@@ -12,24 +12,24 @@ CREATE TABLE `phpvms_acarsdata` (
   `flightnum` varchar(11) NOT NULL DEFAULT '0',
   `pilotname` varchar(100) NOT NULL DEFAULT '',
   `aircraft` varchar(12) NOT NULL DEFAULT '',
-  `lat` varchar(15) NOT NULL DEFAULT '',
-  `lng` varchar(15) NOT NULL DEFAULT '',
+  `lat` varchar(15) NOT NULL DEFAULT '0',
+  `lng` varchar(15) NOT NULL DEFAULT '0',
   `heading` smallint(6) NOT NULL DEFAULT '0',
-  `alt` varchar(6) NOT NULL DEFAULT '',
+  `alt` varchar(6) NOT NULL DEFAULT '0',
   `gs` int(11) NOT NULL DEFAULT '0',
   `depicao` varchar(4) NOT NULL DEFAULT '',
   `depapt` varchar(255) NOT NULL DEFAULT '',
   `arricao` varchar(4) NOT NULL DEFAULT '',
-  `arrapt` text NOT NULL,
+  `arrapt` text NOT NULL DEFAULT '',
   `deptime` time NOT NULL DEFAULT '00:00:00',
-  `timeremaining` varchar(6) NOT NULL DEFAULT '',
+  `timeremaining` varchar(6) NOT NULL DEFAULT '0',
   `arrtime` time NOT NULL DEFAULT '00:00:00',
-  `route` text NOT NULL,
-  `route_details` text NOT NULL,
+  `route` text NOT NULL DEFAULT '',
+  `route_details` text NOT NULL DEFAULT '',
   `distremain` varchar(6) NOT NULL DEFAULT '',
   `phasedetail` varchar(255) NOT NULL DEFAULT '',
   `online` varchar(10) NOT NULL DEFAULT '',
-  `messagelog` text NOT NULL,
+  `messagelog` text NOT NULL DEFAULT '',
   `lastupdate` datetime NOT NULL DEFAULT '1970-01-01 01:01:01',
   `client` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
@@ -43,8 +43,8 @@ CREATE TABLE `phpvms_activityfeed` (
   `pilotid` int(11) NOT NULL DEFAULT '0',
   `refid` bigint(20) NOT NULL DEFAULT '0',
   `type` tinyint(4) NOT NULL DEFAULT '0',
-  `message` varchar(100) NOT NULL,
-  `submitdate` datetime NOT NULL,
+  `message` varchar(100) NOT NULL DEFAULT '',
+  `submitdate` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `pilotid` (`pilotid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
@@ -53,9 +53,9 @@ CREATE TABLE `phpvms_activityfeed` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_adminlog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pilotid` int(11) NOT NULL,
-  `datestamp` datetime NOT NULL,
-  `message` varchar(255) NOT NULL,
+  `pilotid` int(11) NOT NULL DEFAULT '',
+  `datestamp` datetime NOT NULL DEFAULT '',
+  `message` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -66,9 +66,9 @@ CREATE TABLE `phpvms_aircraft` (
   `icao` varchar(4) NOT NULL DEFAULT '',
   `name` varchar(12) NOT NULL DEFAULT '',
   `fullname` varchar(50) NOT NULL DEFAULT '',
-  `registration` varchar(30) NOT NULL,
-  `downloadlink` text NOT NULL,
-  `imagelink` text NOT NULL,
+  `registration` varchar(30) NOT NULL DEFAULT '',
+  `downloadlink` text NOT NULL DEFAULT '',
+  `imagelink` text NOT NULL DEFAUALT '',
   `range` varchar(15) NOT NULL DEFAULT '0',
   `weight` varchar(15) NOT NULL DEFAULT '0',
   `cruise` varchar(15) NOT NULL DEFAULT '0',
@@ -97,7 +97,7 @@ CREATE TABLE `phpvms_airports` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `icao` varchar(5) NOT NULL DEFAULT '',
   `iata` varchar(10) NOT NULL DEFAULT '',
-  `name` text NOT NULL,
+  `name` text NOT NULL DEFAULT '',
   `city` varchar(255) NOT NULL DEFAULT '',
   `country` varchar(50) NOT NULL DEFAULT '',
   `region` varchar(50) NOT NULL DEFAULT '',
@@ -107,7 +107,7 @@ CREATE TABLE `phpvms_airports` (
   `lng` float NOT NULL DEFAULT '0',
   `hub` smallint(6) NOT NULL DEFAULT '0',
   `fuelprice` float NOT NULL DEFAULT '0',
-  `chartlink` text NOT NULL,
+  `chartlink` text NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `icao` (`icao`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
@@ -116,9 +116,9 @@ CREATE TABLE `phpvms_airports` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_awards` (
   `awardid` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(25) NOT NULL,
-  `descrip` varchar(100) NOT NULL,
-  `image` text NOT NULL,
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `descrip` varchar(100) NOT NULL DEFAULT '',
+  `image` text NOT NULL DEFAULT '',
   PRIMARY KEY (`awardid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -126,9 +126,9 @@ CREATE TABLE `phpvms_awards` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_awardsgranted` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `awardid` int(11) NOT NULL,
-  `pilotid` int(11) NOT NULL,
-  `dateissued` datetime NOT NULL,
+  `awardid` int(11) NOT NULL DEFAULT '',
+  `pilotid` int(11) NOT NULL DEFAULT '',
+  `dateissued` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -138,7 +138,7 @@ CREATE TABLE `phpvms_bids` (
   `bidid` int(11) NOT NULL AUTO_INCREMENT,
   `pilotid` int(11) NOT NULL DEFAULT '0',
   `routeid` int(11) NOT NULL DEFAULT '0',
-  `dateadded` date NOT NULL,
+  `dateadded` date NOT NULL DEFAULT '',
   PRIMARY KEY (`bidid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -146,9 +146,9 @@ CREATE TABLE `phpvms_bids` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_customfields` (
   `fieldid` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(75) NOT NULL,
-  `fieldname` varchar(75) NOT NULL,
-  `value` text NOT NULL,
+  `title` varchar(75) NOT NULL DEFAULT '',
+  `fieldname` varchar(75) NOT NULL DEFAULT '',
+  `value` text NOT NULL DEFAULT '',
   `type` varchar(25) NOT NULL DEFAULT 'text',
   `public` smallint(6) NOT NULL DEFAULT '0',
   `showonregister` smallint(6) NOT NULL DEFAULT '0',
@@ -173,10 +173,10 @@ CREATE TABLE `phpvms_downloads` (
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_expenselog` (
-  `dateadded` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `type` varchar(2) NOT NULL,
-  `cost` float NOT NULL,
+  `dateadded` int(11) NOT NULL DEFAULT '',
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `type` varchar(2) NOT NULL DEFAULT '',
+  `cost` float NOT NULL DEFAULT '',
   KEY `dateadded` (`dateadded`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -184,8 +184,8 @@ CREATE TABLE `phpvms_expenselog` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_expenses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(25) NOT NULL,
-  `cost` float NOT NULL,
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `cost` float NOT NULL DEFAULT '',
   `fixed` int(11) NOT NULL DEFAULT '0',
   `type` varchar(1) NOT NULL DEFAULT 'M',
   PRIMARY KEY (`id`)
@@ -195,8 +195,8 @@ CREATE TABLE `phpvms_expenses` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_fieldvalues` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fieldid` int(11) NOT NULL,
-  `pilotid` int(11) NOT NULL,
+  `fieldid` int(11) NOT NULL DEFAULT '',
+  `pilotid` int(11) NOT NULL DEFAULT '',
   `value` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `phpvms_fieldvalues_ibfk_1` (`fieldid`),
@@ -209,10 +209,10 @@ CREATE TABLE `phpvms_fieldvalues` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_financedata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `month` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
-  `data` text NOT NULL,
-  `total` float NOT NULL,
+  `month` int(11) NOT NULL DEFAULT '',
+  `year` int(11) NOT NULL DEFAULT '',
+  `data` text NOT NULL DEFAULT '',
+  `total` float NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -220,10 +220,10 @@ CREATE TABLE `phpvms_financedata` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_fuelprices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `icao` varchar(4) NOT NULL,
-  `lowlead` float NOT NULL,
-  `jeta` float NOT NULL,
-  `dateupdated` datetime NOT NULL,
+  `icao` varchar(4) NOT NULL DEFAULT '',
+  `lowlead` float NOT NULL DEFAULT '',
+  `jeta` float NOT NULL DEFAULT '',
+  `dateupdated` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -255,13 +255,13 @@ CREATE TABLE `phpvms_groups` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_ledger` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pilotid` int(11) NOT NULL,
+  `pilotid` int(11) NOT NULL DEFAULT '',
   `pirepid` int(11) NOT NULL DEFAULT '0',
-  `paysource` tinyint(4) NOT NULL,
+  `paysource` tinyint(4) NOT NULL DEFAULT '',
   `paytype` int(11) NOT NULL DEFAULT '3',
   `amount` float(7,2) NOT NULL DEFAULT '0.00',
-  `submitdate` datetime NOT NULL,
-  `modifieddate` datetime NOT NULL,
+  `submitdate` datetime NOT NULL DEFAULT '',
+  `modifieddate` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `pilot_id` (`pilotid`),
   KEY `pirepid` (`pirepid`)
@@ -271,16 +271,16 @@ CREATE TABLE `phpvms_ledger` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_navdata` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(7) NOT NULL,
-  `title` varchar(25) NOT NULL,
+  `name` varchar(7) NOT NULL DEFAULT '',
+  `title` varchar(25) NOT NULL DEFAULT '',
   `airway` varchar(7) DEFAULT NULL,
   `airway_type` varchar(1) DEFAULT NULL,
-  `seq` int(11) NOT NULL,
-  `loc` varchar(4) NOT NULL,
-  `lat` float(8,6) NOT NULL,
-  `lng` float(9,6) NOT NULL,
-  `freq` varchar(7) NOT NULL,
-  `type` int(11) NOT NULL,
+  `seq` int(11) NOT NULL DEFAULT '',
+  `loc` varchar(4) NOT NULL DEFAULT '',
+  `lat` float(8,6) NOT NULL DEFAULT '',
+  `lng` float(9,6) NOT NULL DEFAULT '',
+  `freq` varchar(7) NOT NULL DEFAULT '',
+  `type` int(11) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `airway` (`airway`)
@@ -291,7 +291,7 @@ CREATE TABLE `phpvms_navdata` (
 CREATE TABLE `phpvms_news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(30) NOT NULL DEFAULT '',
-  `body` text NOT NULL,
+  `body` text NOT NULL DEFAULT '',
   `postdate` datetime NOT NULL DEFAULT '1970-01-01 01:01:01',
   `postedby` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
@@ -350,10 +350,10 @@ CREATE TABLE `phpvms_pilots` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_pirepcomments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pirepid` int(11) NOT NULL,
-  `pilotid` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  `postdate` datetime NOT NULL,
+  `pirepid` int(11) NOT NULL DEFAULT '',
+  `pilotid` int(11) NOT NULL DEFAULT '',
+  `comment` text NOT NULL DEFAULT '',
+  `postdate` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `phpvms_pirepcomments_ibfk_1` (`pirepid`),
   CONSTRAINT `phpvms_pirepcomments_ibfk_1` FOREIGN KEY (`pirepid`) REFERENCES `phpvms_pireps` (`pirepid`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -363,10 +363,10 @@ CREATE TABLE `phpvms_pirepcomments` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_pirepfields` (
   `fieldid` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(25) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `type` varchar(25) NOT NULL,
-  `options` text NOT NULL,
+  `title` varchar(25) NOT NULL DEFAULT '',
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `type` varchar(25) NOT NULL DEFAULT '',
+  `options` text NOT NULL DEFAULT '',
   PRIMARY KEY (`fieldid`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -380,32 +380,32 @@ CREATE TABLE `phpvms_pireps` (
   `flightnum` varchar(10) NOT NULL DEFAULT '0',
   `depicao` varchar(4) NOT NULL DEFAULT '',
   `arricao` varchar(4) NOT NULL DEFAULT '',
-  `route` text NOT NULL,
-  `route_details` text NOT NULL,
+  `route` text NOT NULL DEFAULT 'DCT',
+  `route_details` text NOT NULL DEFAULT '',
   `aircraft` varchar(12) NOT NULL DEFAULT '',
   `flighttime` varchar(10) NOT NULL DEFAULT '',
-  `flighttime_stamp` time NOT NULL,
+  `flighttime_stamp` time NOT NULL DEFAULT '',
   `distance` smallint(6) NOT NULL DEFAULT '0',
   `landingrate` float NOT NULL DEFAULT '0',
   `submitdate` datetime NOT NULL DEFAULT '1970-01-01 01:01:01',
-  `modifieddate` datetime NOT NULL,
+  `modifieddate` datetime NOT NULL DEFAULT '',
   `accepted` smallint(6) NOT NULL DEFAULT '0',
-  `log` text NOT NULL,
-  `load` int(11) NOT NULL,
+  `log` text NOT NULL DEFAULT '',
+  `load` int(11) NOT NULL DEFAULT '',
   `fuelused` float NOT NULL DEFAULT '0',
   `fuelunitcost` float NOT NULL DEFAULT '0',
-  `fuelprice` float NOT NULL DEFAULT '5.1',
-  `price` float NOT NULL,
+  `fuelprice` float NOT NULL DEFAULT '1.50',
+  `price` float NOT NULL DEFAULT '',
   `flighttype` varchar(1) NOT NULL DEFAULT 'P',
   `gross` float NOT NULL DEFAULT '0',
-  `pilotpay` float NOT NULL,
+  `pilotpay` float NOT NULL DEFALT '',
   `paytype` tinyint(1) NOT NULL DEFAULT '1',
-  `expenses` float NOT NULL,
-  `expenselist` blob NOT NULL,
-  `revenue` float NOT NULL,
-  `source` varchar(25) NOT NULL,
-  `exported` tinyint(4) NOT NULL,
-  `rawdata` text NOT NULL,
+  `expenses` float NOT NULL DEFAULT '',
+  `expenselist` blob NOT NULL DEFAULT '',
+  `revenue` float NOT NULL DEFAULT '',
+  `source` varchar(25) NOT NULL DEFAULT '',
+  `exported` tinyint(4) NOT NULL DEFAULT '',
+  `rawdata` text NOT NULL DEFAULT '',
   PRIMARY KEY (`pirepid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -413,9 +413,9 @@ CREATE TABLE `phpvms_pireps` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_pirepvalues` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fieldid` int(11) NOT NULL,
-  `pirepid` int(11) NOT NULL,
-  `value` text NOT NULL,
+  `fieldid` int(11) NOT NULL DEFAULT '',
+  `pirepid` int(11) NOT NULL DEFAULT '',
+  `value` text NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -424,7 +424,7 @@ CREATE TABLE `phpvms_pirepvalues` (
 CREATE TABLE `phpvms_ranks` (
   `rankid` int(11) NOT NULL AUTO_INCREMENT,
   `rank` varchar(32) NOT NULL DEFAULT '',
-  `rankimage` text NOT NULL,
+  `rankimage` text NOT NULL DEFAULT '',
   `minhours` smallint(6) NOT NULL DEFAULT '0',
   `payrate` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`rankid`),
@@ -439,10 +439,10 @@ CREATE TABLE `phpvms_schedules` (
   `flightnum` varchar(10) NOT NULL DEFAULT '0',
   `depicao` varchar(4) NOT NULL DEFAULT '',
   `arricao` varchar(4) NOT NULL DEFAULT '',
-  `route` text NOT NULL,
-  `route_details` text NOT NULL,
-  `aircraft` text NOT NULL,
-  `flightlevel` varchar(6) NOT NULL,
+  `route` text NOT NULL DEFAULT 'DCT',
+  `route_details` text NOT NULL DEFAULT '',
+  `aircraft` text NOT NULL DEFAULT '',
+  `flightlevel` varchar(6) NOT NULL DEFAULT '',
   `distance` float NOT NULL DEFAULT '0',
   `deptime` varchar(15) NOT NULL DEFAULT '',
   `arrtime` varchar(15) NOT NULL DEFAULT '',
@@ -452,11 +452,11 @@ CREATE TABLE `phpvms_schedules` (
   `week2` varchar(7) NOT NULL DEFAULT '0123456',
   `week3` varchar(7) NOT NULL DEFAULT '0123456',
   `week4` varchar(7) NOT NULL DEFAULT '0123456',
-  `price` float NOT NULL,
+  `price` float NOT NULL DEFAULT '',
   `payforflight` float NOT NULL DEFAULT '0',
   `flighttype` varchar(1) NOT NULL DEFAULT 'P',
   `timesflown` int(11) NOT NULL DEFAULT '0',
-  `notes` text NOT NULL,
+  `notes` text NOT NULL DEFAULT '',
   `enabled` int(11) NOT NULL DEFAULT '1',
   `bidid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -472,9 +472,9 @@ CREATE TABLE `phpvms_schedules` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_sessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `pilotid` int(11) NOT NULL,
-  `ipaddress` varchar(25) NOT NULL,
-  `logintime` datetime NOT NULL,
+  `pilotid` int(11) NOT NULL DEFAULT '',
+  `ipaddress` varchar(25) NOT NULL DEFAULT '',
+  `logintime` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -495,8 +495,8 @@ CREATE TABLE `phpvms_settings` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `phpvms_updates` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(25) NOT NULL,
-  `lastupdate` datetime NOT NULL,
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `lastupdate` datetime NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
